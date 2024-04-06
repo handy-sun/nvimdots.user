@@ -17,7 +17,7 @@ settings["format_notify"] = false
 -- settings["colorscheme"] = "melange"
 -- Overwrite colorscheme to catppuccin-frappe
 -- settings["colorscheme"] = "catppuccin"
-settings["colorscheme"] = "catppuccin-frappe"
+settings["colorscheme"] = "catppuccin-mocha"
 
 -- settings["transparent_background"] = true
 
