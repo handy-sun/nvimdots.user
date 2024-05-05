@@ -8,7 +8,7 @@ return function()
 			},
 			mocha = {
 				text = "#d5e2ee",
-				base = "#282c34",
+				base = "#252930",
 			},
 			-- light
 			latte = {
