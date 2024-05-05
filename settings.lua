@@ -4,8 +4,6 @@ local settings = {}
 -- If cannot connect to port 22, set false
 settings["use_ssh"] = true
 
-settings["format_on_save"] = false
-
 -- Set it to false if there are no need to format on save.
 ---@type boolean
 settings["format_on_save"] = false
@@ -20,7 +18,7 @@ settings["format_notify"] = false
 settings["colorscheme"] = "catppuccin-mocha"
 
 -- settings["transparent_background"] = true
-
+settings["disabled_plugins"] = {}
 -- Set the dashboard startup image here
 -- You can generate the ascii image using: https://github.com/TheZoraiz/ascii-image-converter
 -- More info: https://github.com/ayamir/nvimdots/wiki/Issues#change-dashboard-startup-image

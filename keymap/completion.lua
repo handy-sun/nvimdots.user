@@ -52,24 +52,30 @@ mappings["plug_map"] = {
 	["n|<leader>e"] = map_cr("q!"):with_desc("edit: Force quit"),
 	-- Tab close
 	-- ["n|tc"] = map_cr("tabclose"):with_noremap():with_desc("tab: Close current tab"),
+	["n|sc"] = map_cmd('"ayiw'):with_noremap():with_desc("yank a word into register a"),
+	["n|sp"] = map_cmd('viw"ap'):with_noremap():with_desc("paste override a word with register a"),
+	["n|sw"] = map_cmd('"byiW'):with_noremap():with_desc("yank Word into register a"),
+	["n|s["] = map_cmd('viW"bp'):with_noremap():with_desc("paste override Word with register a"),
+	["n|sa"] = map_cmd(":%s/<C-R>a//g<Left><Left>"):with_noremap():with_desc("replace register a"),
+	["n|s/"] = map_cmd(":%s/<C-R>///g<Left><Left>"):with_noremap():with_desc("replace search content"),
 	-- split 4 pos and fill with absolute path of current file
+	["n|se"] = map_cmd(":e <C-R>=expand('%:p:h') . '/' <CR>"):with_noremap():with_desc("edit another file fill absolute path"),
 	["n|sh"] = map_cmd(":setlocal nosplitright<CR>:vsplit <C-R>=expand('%:p:h') . '/' <CR>"):with_noremap():with_desc("split left and fill absolute path"),
 	["n|sl"] = map_cmd(":setlocal splitright<CR>:vsplit <C-R>=expand('%:p:h') . '/' <CR>"):with_noremap():with_desc("split right and fill absolute path"),
 	["n|sk"] = map_cmd(":setlocal nosplitbelow<CR>:split <C-R>=expand('%:p:h') . '/' <CR>"):with_noremap():with_desc("split above and fill absolute path"),
 	["n|sj"] = map_cmd(":setlocal splitbelow<CR>:split <C-R>=expand('%:p:h') . '/' <CR>"):with_noremap():with_desc("split below and fill absolute path"),
-
 	-- Edit file
-	["n|<A-c>"] = map_cmd("c$"):with_noremap():with_silent():with_desc("edit: Replace text to EOL"),
+	["n|<leader>W"] = map_cmd(":%s/\\s\\+$//<CR>:let @/=''<CR>"):with_noremap():with_desc("Trim EOL trailing space"),
 	["n|<leader><CR>"] = map_cmd("i<CR><Esc>k$"):with_noremap():with_desc("edit: Break this line and move right content to next line"),
 	["n|<A-Up>"] = map_cmd(":m -2<CR>"):with_desc("edit: Move this line up"),
 	["n|<A-Down>"] = map_cmd(":m +1<CR>"):with_desc("edit: Move this line down"),
 	["n|<leader><Up>"] = map_cmd("yyP"):with_desc("edit: Yank line and paste below"),
 	["n|<leader><Down>"] = map_cmd("yyp"):with_desc("edit: Yank line and paste down"),
-	-- ["n|<C-y>"] = map_cmd("yiw"):with_desc("edit: Yank in word"),
 	["n|<C-p>"] = map_cmd("viwP"):with_desc("edit: Paste to override in word"),
 	-- Insert mode
-	["i|<C-d>"] = map_cmd("ddi"):with_noremap():with_silent():with_desc("Clear current line"),
-	-- ["i|<C-z>"] = map_cmd("ui"):with_noremap():with_silent():with_desc("Undo"),
+	["i|<C-d>"] = map_cmd("<Esc>ddi"):with_noremap():with_silent():with_desc("Clear current line"),
+	["i|<C-z>"] = map_cmd("<Esc>ui"):with_noremap():with_silent():with_desc("Undo"),
+	-- ["i|<C-u>"]: origin
 	["i|<C-k>"] = map_cmd("<C-o>D"):with_noremap():with_silent():with_desc("Delete content behind block"),
 	-- Command mode
 	["c|<C-t>"] = map_cmd("<C-R>=expand('%:p:h') . '/' <CR>"):with_noremap():with_silent():with_desc("fill absolute path"),
