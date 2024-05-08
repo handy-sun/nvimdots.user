@@ -51,7 +51,6 @@ mappings["plug_map"] = {
 	["n|<leader><BS>"] = map_cr("wqa"):with_desc("edit: Save All file(s) and quit"),
 	["n|<leader>e"] = map_cr("q!"):with_desc("edit: Force quit"),
 	-- Tab close
-	-- ["n|tc"] = map_cr("tabclose"):with_noremap():with_desc("tab: Close current tab"),
 	["n|sc"] = map_cmd('"ayiw'):with_noremap():with_desc("yank a word into register a"),
 	["n|sp"] = map_cmd('viw"ap'):with_noremap():with_desc("paste override a word with register a"),
 	["n|sw"] = map_cmd('"byiW'):with_noremap():with_desc("yank Word into register a"),
@@ -79,6 +78,13 @@ mappings["plug_map"] = {
 	["i|<C-k>"] = map_cmd("<C-o>D"):with_noremap():with_silent():with_desc("Delete content behind block"),
 	-- Command mode
 	["c|<C-t>"] = map_cmd("<C-R>=expand('%:p:h') . '/' <CR>"):with_noremap():with_silent():with_desc("fill absolute path"),
+	-- bufferline.nvim pluggin
+	["n|tj"] = map_cr("BufferLineCyclePrev"):with_noremap():with_desc("bufferline: Move prev bufferline"),
+	["n|tk"] = map_cr("BufferLineCycleNext"):with_noremap():with_desc("bufferline: Move next bufferline"),
+	["n|th"] = map_cr("BufferLineCloseLeft"):with_noremap():with_desc("bufferline: Close current left bufferlines"),
+	["n|tl"] = map_cr("BufferLineCloseRight"):with_noremap():with_desc("bufferline: Close current right bufferlines"),
+	["n|tc"] = map_cr("BufferLinePickClose"):with_noremap():with_desc("bufferline: Choice and close bufferline"),
+	["n|to"] = map_cr("BufferLineCloseOthers"):with_noremap():with_desc("bufferline: Close others bufferline"),
 }
 -- custom }}}1
 

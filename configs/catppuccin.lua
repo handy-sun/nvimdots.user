@@ -4,11 +4,13 @@ return function()
 	require("catppuccin").setup({
 		color_overrides = {
 			all = {
-				-- text = "#d5e2ee",
+				text = "#d5e2ee",
+				base = "#282c34",
 			},
 			mocha = {
 				text = "#d5e2ee",
-				base = "#252930",
+				-- base = "#252930",
+				base = "#282c34",
 			},
 			-- light
 			latte = {
