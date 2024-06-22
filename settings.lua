@@ -4,6 +4,7 @@ local settings = {}
 -- If cannot connect to port 22, set false
 settings["use_ssh"] = true
 
+settings["use_copilot"] = false
 -- Set it to false if there are no need to format on save.
 ---@type boolean
 settings["format_on_save"] = false
@@ -12,13 +13,13 @@ settings["format_on_save"] = false
 ---@type boolean
 settings["format_notify"] = false
 
--- settings["colorscheme"] = "melange"
--- Overwrite colorscheme to catppuccin-frappe
--- settings["colorscheme"] = "catppuccin"
-settings["colorscheme"] = "catppuccin-mocha"
+-- Overwrite colorscheme to onedark
+settings["colorscheme"] = "onedark"
 
 -- settings["transparent_background"] = true
-settings["disabled_plugins"] = {}
+settings["disabled_plugins"] = {
+	-- "zbirenbaum/copilot.lua"
+}
 -- Set the dashboard startup image here
 -- You can generate the ascii image using: https://github.com/TheZoraiz/ascii-image-converter
 -- More info: https://github.com/ayamir/nvimdots/wiki/Issues#change-dashboard-startup-image

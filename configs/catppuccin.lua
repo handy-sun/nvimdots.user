@@ -4,13 +4,12 @@ return function()
 	require("catppuccin").setup({
 		color_overrides = {
 			all = {
-				text = "#d5e2ee",
-				base = "#282c34",
+				-- text = "#d5e2ee",
+				-- base = "#282c34",
 			},
 			mocha = {
-				text = "#d5e2ee",
-				-- base = "#252930",
-				base = "#282c34",
+				text = "#dfe6f0",
+				base = "#302e38",
 			},
 			-- light
 			latte = {
@@ -19,7 +18,7 @@ return function()
 				-- crust = "#474747",
 			},
 			macchiato = {
-				base = "#28282a",
+				-- base = "#28282a",
 				-- crust = "#474747",
 			}
 		},
