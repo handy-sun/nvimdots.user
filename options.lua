@@ -2,7 +2,8 @@ local options = {
 	wrap = true,
 	showbreak = '⣿',
 	showcmd = true,
-	-- clipboard = "unnamed",
+	gdefault = true,
+	clipboard = "unnamed",
 }
 
 return options

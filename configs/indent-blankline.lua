@@ -3,7 +3,9 @@
 -- 	"Whitespace",
 -- }
 
-local hl= {
+local hl_tab = "TabDark"
+
+local hl_rainbow = {
 	"RainbowRed",
 	"RainbowYellow",
 	"RainbowBlue",
@@ -15,6 +17,7 @@ local hl= {
 local hooks = require("ibl.hooks")
 
 hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+	vim.api.nvim_set_hl(0, "TabDark", { fg = "#464247" })
 	vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E16B58" })
 	vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#FAC761" })
 	vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#85ADD6" })
@@ -31,14 +34,14 @@ hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_ex
 return {
 	indent = {
 		tab_char = "»",
-		-- highlight = hl,
+		highlight = hl_tab,
 	},
 	whitespace = {
-		-- highlight = hl,
+		highlight = hl_tab,
 		-- remove_blankline_trail = false,
 	},
 	scope = {
 		-- char = "|",
-		highlight = hl,
+		highlight = hl_rainbow,
 	},
 }

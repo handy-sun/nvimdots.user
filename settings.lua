@@ -16,6 +16,17 @@ settings["format_notify"] = false
 -- Overwrite colorscheme to onedark
 settings["colorscheme"] = "onedark"
 
+-- plug: mason-lspconfig: ensure_installed used
+-- @type string[]
+settings["lsp_deps"] = function(defaults)
+	return {
+		defaults[5], -- "lua_ls"
+		defaults[6], -- "pylsp"
+		-- "jdtls",
+		-- "java_language_server"
+	}
+end
+
 -- settings["transparent_background"] = true
 settings["disabled_plugins"] = {
 	-- "zbirenbaum/copilot.lua"

@@ -7,8 +7,8 @@ ui['liuchengxu/vista.vim'] = {
 	name = 'vista',
 	event = { 'BufReadPost' },
 	init = function()
-		local expect_width = vfn.float2nr(vfn.winwidth(0) / 5)
-		vim.g.vista_sidebar_width = vfn.max({ 35, expect_width })
+		local expect_width = vfn.float2nr(vfn.winwidth(0) / 6) + 2
+		vim.g.vista_sidebar_width = vfn.max({ 32, expect_width })
 		vim.g.vista_sidebar_position = 'topleft vertical'
 		vim.g.vista_fzf_preview = { 'right:50%' }
 		vim.g.vista_default_executive = 'ctags'
@@ -21,14 +21,20 @@ ui['navarasu/onedark.nvim'] = {
 	config = function()
 		require('onedark').setup {
 			style = 'dark',
-			toggle_style_key = '<F12>',
+			toggle_style_key = '<leader>ts',
 			code_style = {
-				comments = 'italic'
+				-- comments = 'italic'
 			},
 			diagnostics = {
 				darker = true, -- darker colors for diagnostic
 				undercurl = true,-- use undercurl instead of underline for diagnostics
 				background = true,
+			},
+			colors = {
+				dg_comment = '#52823f'
+			},
+			highlights = {
+				["@comment"] = {fg = '$dg_comment', fmt = 'italic'},
 			}
 		}
 	end
