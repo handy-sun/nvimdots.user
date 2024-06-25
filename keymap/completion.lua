@@ -8,83 +8,99 @@ local bind = require("keymap.bind")
 local map_cr = bind.map_cr
 local map_cmd = bind.map_cmd
 local map_callback = bind.map_callback
-local et = bind.escape_termcode
+local map_cu = bind.map_cu
+-- local et = bind.escape_termcode
 
 mappings["plug_map"] = {
 	-- !! Disable these mappings
 	["n|<C-s>"] = "",
 	["n|<Esc>"] = "",
-	["n|<A-h>"] = "",
-	["n|<A-l>"] = "",
-	["n|<A-j>"] = "",
-	["n|<A-k>"] = "",
+	-- ["n|<M-h>"] = "",
+	-- ["n|<M-l>"] = "",
+	-- ["n|<M-j>"] = "",
+	-- ["n|<M-k>"] = "",
 	["n|<C-q>"] = "",
-	["n|<A-S-q>"] = "",
+	["n|<M-S-q>"] = "",
 	["v|J"] = "",
 	["v|K"] = "",
 	-- noh
 	["n|<leader><space>"] = map_callback(function()
 			_flash_esc_or_noh()
 		end)
-		:with_noremap()
-		:with_silent()
-		:with_desc("edit: Clear search highlight"),
+		:with_noremap():with_silent():with_desc("edit: Clear search highlight"),
 	-- comment toggle line(s)
-	["n|<leader>/"] = map_callback(function()
-			return vim.v.count == 0 and et("<Plug>(comment_toggle_linewise_current)")
-				or et("<Plug>(comment_toggle_linewise_count)")
-		end)
-		:with_silent()
-		:with_noremap()
-		:with_expr()
-		:with_desc("edit: Toggle comment for line (custom)"),
+	-- ["n|<leader>/"] = map_callback(function()
+	-- 		return vim.v.count == 0 and et("<Plug>(comment_toggle_linewise_current)")
+	-- 			or et("<Plug>(comment_toggle_linewise_count)")
+	-- 	end)
+	-- 	:with_silent():with_noremap():with_expr():with_desc("edit: Toggle comment for line (custom)"),
+	["n|<leader>/"] = map_cmd('gcc'):with_silent():with_desc("edit: Toggle comment for line (custom)"),
+	["n|<F2>"] = map_cr("Vista!!"):with_noremap():with_silent():with_desc("split left: Vista tagbar toggle"),
+	-- Swap these two origin mappings
+	["n|<M-i>"] = map_cr("BufferLineCyclePrev"):with_noremap():with_silent():with_desc("buffer: Switch to prev"),
+	["n|<M-o>"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent():with_desc("buffer: Switch to next"),
 	-- Select all
 	["n|<C-a>"] = map_cmd("ggVG"):with_noremap():with_desc("Select all contents"),
+	["n|n"] = map_cmd("'Nn'[v:searchforward]"):with_noremap():with_expr():with_desc("Always search forward"),
+	["n|N"] = map_cmd("'nN'[v:searchforward]"):with_noremap():with_expr():with_desc("Always search backward"),
+	-- range mapping (v:count1)
+	["n|[\\"] = map_cmd(":<C-u>put! =repeat(nr2char(10), v:count1)<CR>'["):with_noremap():with_silent():with_desc("edit: Insert [count] line(s) above the current line"),
+	["n|]\\"] = map_cmd(":<C-u>put =repeat(nr2char(10), v:count1)<CR>"):with_noremap():with_silent():with_desc("edit: Append [count] line(s) below the current line"),
+	["n|[<space>"] = map_cmd(":<C-u>exe 'normal! i' . repeat(\' \', v:count1)<CR>l"):with_noremap():with_silent():with_desc("edit: Insert [count] space(s) behind the cursor(cursor move with the old colmun)"),
+	-- ["n|[<space>"] = map_cu("exe 'normal! i' . repeat(nr2char(32), v:count1)"):with_noremap():with_desc("edit: Insert [count] space(s) behind the cursor(cursor move with the old colmun)"),
+	-- TODO: how to use range
+	["n|]<space>"] = map_cmd("my:<C-u>exe 'normal! a '<CR>`y"):with_noremap():with_silent():with_desc("edit: Append [count] space(s) after the cursor(cursor postion donnot modify)"),
+	["n|<leader>-"] = map_cu("exe v:count1 . 'bprevious'"):with_noremap():with_silent():with_desc("buffer: Switch to [count] prev"),
+	["n|<leader>="] = map_cu("exe v:count1 . 'bnext'"):with_noremap():with_silent():with_desc("buffer: Switch to [count] next"),
+	["n|z["] = map_cu("exe v:count1 . 'cprevious'"):with_noremap():with_silent():with_desc("quickfix: move [count] prev"),
+	["n|z]"] = map_cu("exe v:count1 . 'cnext'"):with_noremap():with_silent():with_desc("quickfix: move [count] next"),
+	-- ["n|zj"] = map_cu("exe ':,+' . v:count1 . 'join'"):with_noremap():with_desc("edit: Join current line with below [count] line(s)"),
+	-- ["n|zJ"] = map_cu("exe ':,-' . v:count1 . 'join'"):with_noremap():with_desc("edit: Join current line with above [count] line(s)"),
 	-- Resize window
-	["n|<leader>["] = map_cr("vertical resize -4"):with_silent():with_desc("window: Decrease vertically"),
-	["n|<leader>]"] = map_cr("vertical resize +4"):with_silent():with_desc("window: Increase vertically"),
-	["n|<leader>;"] = map_cr("resize -2"):with_silent():with_desc("window: Decrease horizontally"),
-	["n|<leader>'"] = map_cr("resize +2"):with_silent():with_desc("window: Increase horizontally"),
+	-- ["n|<leader>["] = map_cr("vertical resize -4"):with_silent():with_desc("window: Decrease vertically"),
+	-- ["n|<leader>]"] = map_cr("vertical resize +4"):with_silent():with_desc("window: Increase vertically"),
+	-- ["n|<leader>;"] = map_cr("resize -2"):with_silent():with_desc("window: Decrease horizontally"),
+	-- ["n|<leader>'"] = map_cr("resize +2"):with_silent():with_desc("window: Increase horizontally"),
 	-- Save and quit
 	["n|<leader>s"] = map_cr("w"):with_noremap():with_silent():with_desc("edit: Save file"),
 	["n|<leader>q"] = map_cr("wq"):with_desc("edit: Save file and quit"),
 	["n|<leader><BS>"] = map_cr("wqa"):with_desc("edit: Save All file(s) and quit"),
 	["n|<leader>e"] = map_cr("q!"):with_desc("edit: Force quit"),
-	-- Tab close
+
 	["n|sc"] = map_cmd('"ayiw'):with_noremap():with_desc("yank a word into register a"),
-	["n|sp"] = map_cmd('viw"ap'):with_noremap():with_desc("paste override a word with register a"),
+	["n|sv"] = map_cmd('viw"ap'):with_noremap():with_desc("paste override a word with register a"),
 	["n|sw"] = map_cmd('"byiW'):with_noremap():with_desc("yank Word into register a"),
-	["n|s["] = map_cmd('viW"bp'):with_noremap():with_desc("paste override Word with register a"),
-	["n|sa"] = map_cmd(":%s/<C-R>a//g<Left><Left>"):with_noremap():with_desc("replace register a"),
-	["n|s/"] = map_cmd(":%s/<C-R>///g<Left><Left>"):with_noremap():with_desc("replace search content"),
+	["n|so"] = map_cmd('viW"bp'):with_noremap():with_desc("paste override Word with register a"),
+	["n|sa"] = map_cmd(":%s/<C-R>a/"):with_noremap():with_desc("replace register a"),
+	["n|s/"] = map_cmd(":%s/<C-R>//"):with_noremap():with_desc("replace search word"),
+	["n|sr"] = map_cmd(":%s/\\<<C-R><C-W>\\>/"):with_noremap():with_desc("replace the word under the cursor"),
 	-- split 4 pos and fill with absolute path of current file
 	["n|se"] = map_cmd(":e <C-R>=expand('%:p:h') . '/' <CR>"):with_noremap():with_desc("edit another file fill absolute path"),
 	["n|sh"] = map_cmd(":setlocal nosplitright<CR>:vsplit <C-R>=expand('%:p:h') . '/' <CR>"):with_noremap():with_desc("split left and fill absolute path"),
 	["n|sl"] = map_cmd(":setlocal splitright<CR>:vsplit <C-R>=expand('%:p:h') . '/' <CR>"):with_noremap():with_desc("split right and fill absolute path"),
 	["n|sk"] = map_cmd(":setlocal nosplitbelow<CR>:split <C-R>=expand('%:p:h') . '/' <CR>"):with_noremap():with_desc("split above and fill absolute path"),
 	["n|sj"] = map_cmd(":setlocal splitbelow<CR>:split <C-R>=expand('%:p:h') . '/' <CR>"):with_noremap():with_desc("split below and fill absolute path"),
+	["n|z;"] = map_cr("registers"):with_noremap():with_desc("command: Show all registers"),
 	-- Edit file
-	["n|<leader>W"] = map_cmd(":%s/\\s\\+$//<CR>:let @/=''<CR>"):with_noremap():with_desc("Trim EOL trailing space"),
+	["n|<leader>W"] = map_cmd(":%s/\\s\\+$//<CR>"):with_noremap():with_desc("edit: Trim EOL trailing space"),
 	["n|<leader><CR>"] = map_cmd("i<CR><Esc>k$"):with_noremap():with_desc("edit: Break this line and move right content to next line"),
-	["n|<A-Up>"] = map_cmd(":m -2<CR>"):with_desc("edit: Move this line up"),
-	["n|<A-Down>"] = map_cmd(":m +1<CR>"):with_desc("edit: Move this line down"),
-	["n|<leader><Up>"] = map_cmd("yyP"):with_desc("edit: Yank line and paste below"),
-	["n|<leader><Down>"] = map_cmd("yyp"):with_desc("edit: Yank line and paste down"),
-	["n|<C-p>"] = map_cmd("viwP"):with_desc("edit: Paste to override in word"),
+	["n|<M-Up>"] = map_cu("exe 'move -1-' . v:count1"):with_desc("edit: Move this line [count] up"),
+	["n|<M-Down>"] = map_cu("exe 'move +' . v:count1"):with_desc("edit: Move this line [count] down"),
+	["n|<leader><Up>"] = map_cmd("yyP"):with_desc("edit: Yank line and paste above"),
+	["n|<leader><Down>"] = map_cmd("yyp"):with_desc("edit: Yank line and paste below"),
+	["n|<Leader>\""] = map_cmd('viw<ESC>bi"<ESC>ea"<ESC>'):with_noremap():with_desc("edit: Wrap the word with double quote"),
+	["n|<Leader>;"] = map_cmd('mzA;<ESC>`z'):with_noremap():with_desc("edit: Append a ';' after EOL"),
 	-- Insert mode
 	["i|<C-d>"] = map_cmd("<Esc>ddi"):with_noremap():with_silent():with_desc("Clear current line"),
 	["i|<C-z>"] = map_cmd("<Esc>ui"):with_noremap():with_silent():with_desc("Undo"),
 	-- ["i|<C-u>"]: origin
 	["i|<C-k>"] = map_cmd("<C-o>D"):with_noremap():with_silent():with_desc("Delete content behind block"),
+	-- Visual mode
+	["v|<leader>/"] = map_cmd('gc'):with_silent():with_desc("edit: Toggle comment for line in Visual(custom)"),
+	["v|<M-Up>"] = map_cmd(":move '<-2<CR>gv"):with_desc("edit: Move select line(s) up"),
+	["v|<M-Down>"] = map_cmd(":move '>+<CR>gv"):with_desc("edit: Move select line(s) down"),
 	-- Command mode
-	["c|<C-t>"] = map_cmd("<C-R>=expand('%:p:h') . '/' <CR>"):with_noremap():with_silent():with_desc("fill absolute path"),
-	-- bufferline.nvim pluggin
-	["n|tj"] = map_cr("BufferLineCyclePrev"):with_noremap():with_desc("bufferline: Move prev bufferline"),
-	["n|tk"] = map_cr("BufferLineCycleNext"):with_noremap():with_desc("bufferline: Move next bufferline"),
-	["n|th"] = map_cr("BufferLineCloseLeft"):with_noremap():with_desc("bufferline: Close current left bufferlines"),
-	["n|tl"] = map_cr("BufferLineCloseRight"):with_noremap():with_desc("bufferline: Close current right bufferlines"),
-	["n|tc"] = map_cr("BufferLinePickClose"):with_noremap():with_desc("bufferline: Choice and close bufferline"),
-	["n|to"] = map_cr("BufferLineCloseOthers"):with_noremap():with_desc("bufferline: Close others bufferline"),
+	["c|<C-t>"] = map_cmd("<C-R>=expand('%:p:h') . '/' <CR>"):with_noremap():with_silent():with_desc("command: Fill absolute path"),
 }
 -- custom }}}1
 
