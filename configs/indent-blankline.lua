@@ -1,11 +1,7 @@
--- local hl= {
-	-- "CursorColumn",
--- 	"Whitespace",
--- }
-
 local hl_tab = "TabDark"
 
 local hl_rainbow = {
+	"DefaultWhite",
 	"RainbowRed",
 	"RainbowYellow",
 	"RainbowBlue",
@@ -18,6 +14,7 @@ local hooks = require("ibl.hooks")
 
 hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
 	vim.api.nvim_set_hl(0, "TabDark", { fg = "#464247" })
+	vim.api.nvim_set_hl(0, "DefaultWhite", { fg = "#a6aab0" })
 	vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E16B58" })
 	vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#FAC761" })
 	vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#85ADD6" })

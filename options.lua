@@ -3,7 +3,7 @@ local options = {
 	showbreak = '⣿',
 	showcmd = true,
 	gdefault = true,
-	clipboard = "unnamed",
+	clipboard = "",
 }
 
 return options
