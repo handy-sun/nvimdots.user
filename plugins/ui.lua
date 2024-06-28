@@ -2,16 +2,18 @@
 local vfn = vim.fn
 local ui = {}
 
-ui['liuchengxu/vista.vim'] = {
+ui['preservim/tagbar'] = {
 	lazy = true,
-	name = 'vista',
 	event = { 'BufReadPost' },
+	name = 'tagbar',
 	init = function()
 		local expect_width = vfn.float2nr(vfn.winwidth(0) / 6) + 2
-		vim.g.vista_sidebar_width = vfn.max({ 32, expect_width })
-		vim.g.vista_sidebar_position = 'topleft vertical'
-		vim.g.vista_fzf_preview = { 'right:50%' }
-		vim.g.vista_default_executive = 'ctags'
+		vim.g.tagbar_width = vfn.max({ 32, expect_width })
+		vim.g.tagbar_compact = 2
+		vim.g.tagbar_indent = 1
+		vim.g.tagbar_iconchars = { '', '▼' }
+		vim.g.tagbar_sort = 0
+		vim.g.tagbar_position = 'topleft vertical'
 	end
 }
 
@@ -39,11 +41,5 @@ ui['navarasu/onedark.nvim'] = {
 		}
 	end
 }
-
--- ui['joshdick/onedark.vim'] = {
--- 	lazy = true,
--- 	name = 'joshdick-onedark',
--- 	init = require('configs.ui.joshdick-onedark'),
--- }
 
 return ui

@@ -28,14 +28,8 @@ mappings["plug_map"] = {
 			_flash_esc_or_noh()
 		end)
 		:with_noremap():with_silent():with_desc("edit: Clear search highlight"),
-	-- comment toggle line(s)
-	-- ["n|<leader>/"] = map_callback(function()
-	-- 		return vim.v.count == 0 and et("<Plug>(comment_toggle_linewise_current)")
-	-- 			or et("<Plug>(comment_toggle_linewise_count)")
-	-- 	end)
-	-- 	:with_silent():with_noremap():with_expr():with_desc("edit: Toggle comment for line (custom)"),
 	["n|<leader>/"] = map_cmd('gcc'):with_silent():with_desc("edit: Toggle comment for line (custom)"),
-	["n|<F2>"] = map_cr("Vista!!"):with_noremap():with_silent():with_desc("split left: Vista tagbar toggle"),
+	["n|<F2>"] = map_cr("Tagbar"):with_noremap():with_silent():with_desc("split left: Vista tagbar toggle"),
 	-- Swap these two origin mappings
 	["n|<M-i>"] = map_cr("BufferLineCyclePrev"):with_noremap():with_silent():with_desc("buffer: Switch to prev"),
 	["n|<M-o>"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent():with_desc("buffer: Switch to next"),
@@ -54,8 +48,6 @@ mappings["plug_map"] = {
 	["n|<leader>="] = map_cu("exe v:count1 . 'bnext'"):with_noremap():with_silent():with_desc("buffer: Switch to [count] next"),
 	["n|z["] = map_cu("exe v:count1 . 'cprevious'"):with_noremap():with_silent():with_desc("quickfix: move [count] prev"),
 	["n|z]"] = map_cu("exe v:count1 . 'cnext'"):with_noremap():with_silent():with_desc("quickfix: move [count] next"),
-	-- ["n|zj"] = map_cu("exe ':,+' . v:count1 . 'join'"):with_noremap():with_desc("edit: Join current line with below [count] line(s)"),
-	-- ["n|zJ"] = map_cu("exe ':,-' . v:count1 . 'join'"):with_noremap():with_desc("edit: Join current line with above [count] line(s)"),
 	-- Resize window
 	-- ["n|<leader>["] = map_cr("vertical resize -4"):with_silent():with_desc("window: Decrease vertically"),
 	-- ["n|<leader>]"] = map_cr("vertical resize +4"):with_silent():with_desc("window: Increase vertically"),
@@ -66,7 +58,8 @@ mappings["plug_map"] = {
 	["n|<leader>q"] = map_cr("wq"):with_desc("edit: Save file and quit"),
 	["n|<leader><BS>"] = map_cr("wqa"):with_desc("edit: Save All file(s) and quit"),
 	["n|<leader>e"] = map_cr("q!"):with_desc("edit: Force quit"),
-
+	["n|<leader><Tab>"] = map_cmd("@=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>"):with_silent():with_desc("ui: Fold Toggle"),
+	-- Quickly copy/paste and search/replace
 	["n|sc"] = map_cmd('"ayiw'):with_noremap():with_desc("yank a word into register a"),
 	["n|sv"] = map_cmd('viw"ap'):with_noremap():with_desc("paste override a word with register a"),
 	["n|sw"] = map_cmd('"byiW'):with_noremap():with_desc("yank Word into register a"),
@@ -74,7 +67,7 @@ mappings["plug_map"] = {
 	["n|sa"] = map_cmd(":%s/<C-R>a/"):with_noremap():with_desc("replace register a"),
 	["n|s/"] = map_cmd(":%s/<C-R>//"):with_noremap():with_desc("replace search word"),
 	["n|sr"] = map_cmd(":%s/\\<<C-R><C-W>\\>/"):with_noremap():with_desc("replace the word under the cursor"),
-	-- split 4 pos and fill with absolute path of current file
+	-- split 4 pos window and fill with absolute path of current file
 	["n|se"] = map_cmd(":e <C-R>=expand('%:p:h') . '/' <CR>"):with_noremap():with_desc("edit another file fill absolute path"),
 	["n|sh"] = map_cmd(":setlocal nosplitright<CR>:vsplit <C-R>=expand('%:p:h') . '/' <CR>"):with_noremap():with_desc("split left and fill absolute path"),
 	["n|sl"] = map_cmd(":setlocal splitright<CR>:vsplit <C-R>=expand('%:p:h') . '/' <CR>"):with_noremap():with_desc("split right and fill absolute path"),

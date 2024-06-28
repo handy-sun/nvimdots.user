@@ -1,5 +1,5 @@
 return {
-	signs =  function()
+	signs = function()
 		return {
 			add          = { text = "+" },
 			change       = { text = "┃", },
