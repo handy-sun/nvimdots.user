@@ -62,8 +62,8 @@ mappings["plug_map"] = {
 	-- Quickly copy/paste and search/replace
 	["n|sc"] = map_cmd('"ayiw'):with_noremap():with_desc("yank a word into register a"),
 	["n|sv"] = map_cmd('viw"ap'):with_noremap():with_desc("paste override a word with register a"),
-	["n|sw"] = map_cmd('"byiW'):with_noremap():with_desc("yank Word into register a"),
-	["n|so"] = map_cmd('viW"bp'):with_noremap():with_desc("paste override Word with register a"),
+	["n|sw"] = map_cmd('"byiW'):with_noremap():with_desc("yank WORD into register b"),
+	["n|so"] = map_cmd('viW"bp'):with_noremap():with_desc("paste override WORD with register b"),
 	["n|sa"] = map_cmd(":%s/<C-R>a/"):with_noremap():with_desc("replace register a"),
 	["n|s/"] = map_cmd(":%s/<C-R>//"):with_noremap():with_desc("replace search word"),
 	["n|sr"] = map_cmd(":%s/\\<<C-R><C-W>\\>/"):with_noremap():with_desc("replace the word under the cursor"),

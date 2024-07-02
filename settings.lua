@@ -29,6 +29,7 @@ end
 -- settings["transparent_background"] = true
 settings["disabled_plugins"] = {
 	-- "zbirenbaum/copilot.lua"
+	-- "hrsh7th/nvim-cmp"
 }
 -- Set the dashboard startup image here
 -- You can generate the ascii image using: https://github.com/TheZoraiz/ascii-image-converter
