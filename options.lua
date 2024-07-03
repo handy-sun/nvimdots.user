@@ -3,7 +3,7 @@ local options = {
 	showbreak = '⣿',
 	showcmd = true,
 	gdefault = true,
-	clipboard = '',
+	-- clipboard = 'unnamed',
 	cursorcolumn = false,
 	timeoutlen = 700,
 	ttimeoutlen = 10,
@@ -11,22 +11,13 @@ local options = {
 	wildignore = ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**,*build*",
 }
 
-local function set_conditional_options()
-	if vim.fn.executable('rg') == true then
-		options = {
-			grepprg = 'rg --hidden --vimgrep --smart-case --'
-		}
-	else
-		options = {
-			grepformat = '%f:%l:%m,%f:%l%m,%f  %l%m',
-			grepprg = 'grep --binary-files=without-match -irn $*'
-		}
-	end
+if vim.fn.executable('rg') == 1 then
+	options['grepprg'] = 'rg --hidden --vimgrep --smart-case -- '
+else
+	options['grepprg'] = 'grep --binary-files=without-match -irn $*'
+	options['grepformat'] = '%f:%l:%m,%f:%l%m,%f  %l%m'
 end
 
 vim.opt.suffixes:append('.a,.1,.class')
--- vim.opt.wildignore:append("*build*")
-
-set_conditional_options()
 
 return options

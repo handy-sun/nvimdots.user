@@ -1,3 +1,7 @@
+if _VERSION ~= "Lua 5.1" then
+    unpack = table.unpack
+end
+
 local util = require('lspconfig.util')
 local handlers = require('vim.lsp.handlers')
 
