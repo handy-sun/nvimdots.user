@@ -3,12 +3,12 @@ local options = {
 	showbreak = '⣿',
 	showcmd = true,
 	gdefault = true,
-	-- clipboard = 'unnamed',
+	clipboard = '',
 	cursorcolumn = false,
 	timeoutlen = 700,
 	ttimeoutlen = 10,
 	cmdwinheight = 7,
-	wildignore = ".git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**,*build*",
+	wildignore = '.git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**,*build*',
 }
 
 if vim.fn.executable('rg') == 1 then
@@ -19,5 +19,9 @@ else
 end
 
 vim.opt.suffixes:append('.a,.1,.class')
+
+vim.cmd([[
+command! -nargs=+ -complete=file CpGrep execute 'silent grep! <args>' | copen 9 | redraw!
+]])
 
 return options
