@@ -9,7 +9,7 @@ tool['junegunn/fzf'] = {
 }
 
 tool["folke/which-key.nvim"] = {
-	lazy = false;
+	lazy = false,
 }
 
 -- tool['ranjithshegde/ccls.nvim'] = {

@@ -23,6 +23,7 @@ settings["lsp_deps"] = function(defaults)
 		defaults[5], -- "lua_ls"
 		defaults[6], -- "pylsp"
 		"jdtls",
+		"rust_analyzer",
 	}
 end
 
