@@ -49,10 +49,6 @@ mappings["plug_map"] = {
 	["n|z["] = map_cu("exe v:count1 . 'cprevious'"):with_noremap():with_silent():with_desc("quickfix: move [count] prev"),
 	["n|z]"] = map_cu("exe v:count1 . 'cnext'"):with_noremap():with_silent():with_desc("quickfix: move [count] next"),
 	-- Resize window
-	-- ["n|<leader>["] = map_cr("vertical resize -4"):with_silent():with_desc("window: Decrease vertically"),
-	-- ["n|<leader>]"] = map_cr("vertical resize +4"):with_silent():with_desc("window: Increase vertically"),
-	-- ["n|<leader>;"] = map_cr("resize -2"):with_silent():with_desc("window: Decrease horizontally"),
-	-- ["n|<leader>'"] = map_cr("resize +2"):with_silent():with_desc("window: Increase horizontally"),
 	-- Save and quit
 	["n|<leader>s"] = map_cr("w"):with_noremap():with_silent():with_desc("edit: Save file"),
 	["n|<leader>q"] = map_cr("wq"):with_desc("edit: Save file and quit"),
@@ -94,6 +90,10 @@ mappings["plug_map"] = {
 	["v|<M-Down>"] = map_cmd(":move '>+<CR>gv"):with_desc("edit: Move select line(s) down"),
 	-- Command mode
 	["c|<C-t>"] = map_cmd("<C-R>=expand('%:p:h') . '/' <CR>"):with_noremap():with_silent():with_desc("command: Fill absolute path"),
+	-- Copy to system clipboard
+	["n|ss"] = map_cmd('"*y'):with_noremap():with_desc("yank select pattern into system clipboard"),
+	["v|<leader>s"] = map_cmd('"*y'):with_noremap():with_desc("yank select pattern into system clipboard"),
+	["n|su"] = map_cmd('"*p'):with_noremap():with_desc("paste from system clipboard"),
 }
 -- custom }}}1
 
