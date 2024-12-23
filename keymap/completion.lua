@@ -94,6 +94,7 @@ mappings["plug_map"] = {
 	["n|ss"] = map_cmd('"*y'):with_noremap():with_desc("yank select pattern into system clipboard"),
 	["v|<leader>s"] = map_cmd('"*y'):with_noremap():with_desc("yank select pattern into system clipboard"),
 	["n|su"] = map_cmd('"*p'):with_noremap():with_desc("paste from system clipboard"),
+	["v|su"] = map_cmd('"*p'):with_noremap():with_desc("paste from system clipboard"),
 }
 -- custom }}}1
 
