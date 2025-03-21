@@ -5,11 +5,11 @@ local definitions = {
 		{ "BufRead,BufNew", "*.log", "setf messages" },
 	},
 	ft = {
-		{ "FileType", "yaml", "set shiftwidth=2 expandtab" },
+		{ "FileType", "yaml", "set shiftwidth=2 expandtab commentstring=#\\ %s" },
 		-- { "FileType", "lua", "set noexpandtab tabstop=4 softtabstop=0" },
 		{ "FileType", "systemd", "setlocal commentstring=#\\ %s" },
 		{ "FileType", "crontab", "setlocal nobackup nowritebackup" },
-		{ "FileType", "help", "wincmd L | vertical resize -10" },
+		{ "FileType", "help", "if &buftype != 'quickfix' | wincmd L | vertical resize -10 | endif" },
 		{
 			"FileType",
 			"c,cpp",

@@ -31,8 +31,8 @@ mappings["plug_map"] = {
 	["n|<leader>/"] = map_cmd('gcc'):with_silent():with_desc("edit: Toggle comment for line (custom)"),
 	["n|<F2>"] = map_cr("Tagbar"):with_noremap():with_silent():with_desc("split left: Vista tagbar toggle"),
 	-- Swap these two origin mappings
-	["n|<M-i>"] = map_cr("BufferLineCyclePrev"):with_noremap():with_silent():with_desc("buffer: Switch to prev"),
-	["n|<M-o>"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent():with_desc("buffer: Switch to next"),
+	["n|<C-i>"] = map_cr("BufferLineCyclePrev"):with_noremap():with_silent():with_desc("buffer: Switch to prev"),
+	["n|<C-o>"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent():with_desc("buffer: Switch to next"),
 	-- Select all
 	["n|<C-a>"] = map_cmd("ggVG"):with_noremap():with_desc("Select all contents"),
 	["n|n"] = map_cmd("'Nn'[v:searchforward]"):with_noremap():with_expr():with_desc("Always search forward"),
@@ -73,8 +73,8 @@ mappings["plug_map"] = {
 	-- Edit file
 	["n|<leader>W"] = map_cmd(":%s/\\s\\+$//<CR>"):with_noremap():with_desc("edit: Trim EOL trailing space"),
 	["n|<leader><CR>"] = map_cmd("i<CR><Esc>k$"):with_noremap():with_desc("edit: Break this line and move right content to next line"),
-	["n|<M-Up>"] = map_cu("exe 'move -1-' . v:count1"):with_desc("edit: Move this line [count] up"),
-	["n|<M-Down>"] = map_cu("exe 'move +' . v:count1"):with_desc("edit: Move this line [count] down"),
+	["n|<C-Up>"] = map_cu("exe 'move -' . (1 + v:count1)"):with_desc("edit: Move this line [count] up"),
+	["n|<C-Down>"] = map_cu("exe 'move +' . v:count1"):with_desc("edit: Move this line [count] down"),
 	["n|<leader><Up>"] = map_cmd("yyP"):with_desc("edit: Yank line and paste above"),
 	["n|<leader><Down>"] = map_cmd("yyp"):with_desc("edit: Yank line and paste below"),
 	["n|<Leader>\""] = map_cmd('viw<ESC>bi"<ESC>ea"<ESC>'):with_noremap():with_desc("edit: Wrap the word with double quote"),
@@ -86,8 +86,8 @@ mappings["plug_map"] = {
 	["i|<C-k>"] = map_cmd("<C-o>D"):with_noremap():with_silent():with_desc("Delete content behind block"),
 	-- Visual mode
 	["v|<leader>/"] = map_cmd('gc'):with_silent():with_desc("edit: Toggle comment for line in Visual(custom)"),
-	["v|<M-Up>"] = map_cmd(":move '<-2<CR>gv"):with_desc("edit: Move select line(s) up"),
-	["v|<M-Down>"] = map_cmd(":move '>+<CR>gv"):with_desc("edit: Move select line(s) down"),
+	["v|<C-Up>"] = map_cmd(":move '<-2<CR>gv"):with_desc("edit: Move select line(s) up"),
+	["v|<C-Down>"] = map_cmd(":move '>+<CR>gv"):with_desc("edit: Move select line(s) down"),
 	-- Command mode
 	["c|<C-t>"] = map_cmd("<C-R>=expand('%:p:h') . '/' <CR>"):with_noremap():with_silent():with_desc("command: Fill absolute path"),
 	-- Copy to system clipboard

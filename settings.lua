@@ -36,7 +36,8 @@ settings["disabled_plugins"] = {
 -- You can generate the ascii image using: https://github.com/TheZoraiz/ascii-image-converter
 -- More info: https://github.com/ayamir/nvimdots/wiki/Issues#change-dashboard-startup-image
 ---@type string[]
-settings["dashboard_image"] = function() return {
+settings["dashboard_image"] = {
+	[[                                                ]],
 	[[                                   ___          ]],
 	[[                               ,-""   `.        ]],
 	[[                             ,'  _   e )`-._    ]],
@@ -58,7 +59,8 @@ settings["dashboard_image"] = function() return {
 	[[                 \   --<                        ]],
 	[[                  `.`.<                         ]],
 	[[                    `-'                         ]],
+	[[                                                ]],
+	[[                                                ]],
 }
-end
 
 return settings

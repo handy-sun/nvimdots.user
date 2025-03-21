@@ -1,4 +1,5 @@
 local options = {
+	cindent = true,
 	wrap = true,
 	showbreak = '⣿',
 	showcmd = true,
@@ -8,6 +9,8 @@ local options = {
 	timeoutlen = 700,
 	ttimeoutlen = 10,
 	cmdwinheight = 7,
+	showtabline = 1,
+	foldmethod = 'manual',
 	wildignore = '.git,.hg,.svn,*.pyc,*.o,*.out,*.jpg,*.jpeg,*.png,*.gif,*.zip,**/tmp/**,*.DS_Store,**/node_modules/**,**/bower_modules/**,*build*',
 }
 
