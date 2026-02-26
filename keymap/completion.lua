@@ -29,7 +29,7 @@ mappings["plug_map"] = {
 		end)
 		:with_noremap():with_silent():with_desc("edit: Clear search highlight"),
 	["n|<leader>/"] = map_cmd('gcc'):with_silent():with_desc("edit: Toggle comment for line (custom)"),
-	["n|<F2>"] = map_cr("Tagbar"):with_noremap():with_silent():with_desc("split left: Vista tagbar toggle"),
+	["n|gi"] = map_cr("Tagbar"):with_noremap():with_silent():with_desc("split left: Vista tagbar toggle"),
 	-- Swap these two origin mappings
 	["n|<C-i>"] = map_cr("BufferLineCyclePrev"):with_noremap():with_silent():with_desc("buffer: Switch to prev"),
 	["n|<C-o>"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent():with_desc("buffer: Switch to next"),
@@ -43,7 +43,7 @@ mappings["plug_map"] = {
 	["n|[<space>"] = map_cmd(":<C-u>exe 'normal! i' . repeat(\' \', v:count1)<CR>l"):with_noremap():with_silent():with_desc("edit: Insert [count] space(s) behind the cursor(cursor move with the old colmun)"),
 	-- ["n|[<space>"] = map_cu("exe 'normal! i' . repeat(nr2char(32), v:count1)"):with_noremap():with_desc("edit: Insert [count] space(s) behind the cursor(cursor move with the old colmun)"),
 	-- TODO: how to use range
-	["n|]<space>"] = map_cmd("my:<C-u>exe 'normal! a '<CR>`y"):with_noremap():with_silent():with_desc("edit: Append [count] space(s) after the cursor(cursor postion donnot modify)"),
+	["n|]<space>"] = map_cmd("my:<C-u>exe 'normal! a '<CR>`y"):with_noremap():with_silent():with_desc("edit: Append space after the cursor(cursor postion donnot modify)"),
 	["n|<leader>-"] = map_cu("exe v:count1 . 'bprevious'"):with_noremap():with_silent():with_desc("buffer: Switch to [count] prev"),
 	["n|<leader>="] = map_cu("exe v:count1 . 'bnext'"):with_noremap():with_silent():with_desc("buffer: Switch to [count] next"),
 	["n|z["] = map_cu("exe v:count1 . 'cprevious'"):with_noremap():with_silent():with_desc("quickfix: move [count] prev"),
@@ -73,8 +73,8 @@ mappings["plug_map"] = {
 	-- Edit file
 	["n|<leader>W"] = map_cmd(":%s/\\s\\+$//<CR>"):with_noremap():with_desc("edit: Trim EOL trailing space"),
 	["n|<leader><CR>"] = map_cmd("i<CR><Esc>k$"):with_noremap():with_desc("edit: Break this line and move right content to next line"),
-	["n|<C-Up>"] = map_cu("exe 'move -' . (1 + v:count1)"):with_desc("edit: Move this line [count] up"),
-	["n|<C-Down>"] = map_cu("exe 'move +' . v:count1"):with_desc("edit: Move this line [count] down"),
+	["n|<S-Up>"] = map_cu("exe 'move -' . (1 + v:count1)"):with_desc("edit: Move this line [count] up"),
+	["n|<S-Down>"] = map_cu("exe 'move +' . v:count1"):with_desc("edit: Move this line [count] down"),
 	["n|<leader><Up>"] = map_cmd("yyP"):with_desc("edit: Yank line and paste above"),
 	["n|<leader><Down>"] = map_cmd("yyp"):with_desc("edit: Yank line and paste below"),
 	["n|<Leader>\""] = map_cmd('viw<ESC>bi"<ESC>ea"<ESC>'):with_noremap():with_desc("edit: Wrap the word with double quote"),
@@ -86,8 +86,8 @@ mappings["plug_map"] = {
 	["i|<C-k>"] = map_cmd("<C-o>D"):with_noremap():with_silent():with_desc("Delete content behind block"),
 	-- Visual mode
 	["v|<leader>/"] = map_cmd('gc'):with_silent():with_desc("edit: Toggle comment for line in Visual(custom)"),
-	["v|<C-Up>"] = map_cmd(":move '<-2<CR>gv"):with_desc("edit: Move select line(s) up"),
-	["v|<C-Down>"] = map_cmd(":move '>+<CR>gv"):with_desc("edit: Move select line(s) down"),
+	["v|<S-Up>"] = map_cmd(":move '<-2<CR>gv"):with_desc("edit: Move select line(s) up"),
+	["v|<S-Down>"] = map_cmd(":move '>+<CR>gv"):with_desc("edit: Move select line(s) down"),
 	-- Command mode
 	["c|<C-t>"] = map_cmd("<C-R>=expand('%:p:h') . '/' <CR>"):with_noremap():with_silent():with_desc("command: Fill absolute path"),
 	-- Copy to system clipboard
