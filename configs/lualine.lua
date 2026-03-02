@@ -17,6 +17,12 @@ local custom = {
 		separator = { left = "", right = "" },
 	},
 
+	file_enc = {
+		function()
+			return vim.api.nvim_get_option_value("fileencoding", { scope = "local" })
+		end,
+	},
+
 	bomb = {
 		function()
 			if vim.api.nvim_get_option_value("bomb", { scope = "local" }) == true then
@@ -34,7 +40,7 @@ local custom = {
 				et_flag = "•"
 			end
 
-			return string.format("%d %s %d",
+			return string.format("󰘶 %d %s 󰌒 %d",
 				vim.api.nvim_get_option_value("shiftwidth", { scope = "local" }),
 				et_flag,
 				vim.api.nvim_get_option_value("tabstop", { scope = "local" })
@@ -90,6 +96,7 @@ return {
 		lualine_x = function(defaults)
 			return {
 				defaults[1],
+				custom.file_enc,
 				custom.bomb,
 				{
 					"fileformat",
