@@ -1,52 +1,29 @@
-local ui_icon = require("modules.utils.icons").get("ui", true)
+-- local ui_icon = require("modules.utils.icons").get("ui", true)
 
 local custom = {
 	sep = {
 		function()
 			return "|"
 		end,
-		padding = 0,
-		separator = { left = "", right = "" },
+		padding = { left = 1 }
 	},
 
-	date_icon = {
-		function ()
-			return ui_icon.Fire
-		end,
-		padding = 0,
-		separator = { left = "", right = "" },
-	},
-
-	file_enc = {
+	shift_width = {
 		function()
-			return vim.api.nvim_get_option_value("fileencoding", { scope = "local" })
-		end,
-	},
-
-	bomb = {
-		function()
-			if vim.api.nvim_get_option_value("bomb", { scope = "local" }) == true then
-				return "[BOM]"
-			else
-				return ""
-			end
-		end,
-	},
-
-	shift_tab_value = {
-		function()
-			local et_flag = "»"
-			if vim.api.nvim_get_option_value("expandtab", { scope = "local" }) == true then
-				et_flag = "•"
-			end
-
-			return string.format("󰘶 %d %s 󰌒 %d",
-				vim.api.nvim_get_option_value("shiftwidth", { scope = "local" }),
-				et_flag,
-				vim.api.nvim_get_option_value("tabstop", { scope = "local" })
-			)
+			return "󰘶 " .. vim.bo.shiftwidth
 		end,
 		padding = 1,
+	},
+
+	expand_flag = {
+		function()
+			if vim.bo.expandtab == 1 then
+				return "•"
+			else
+				return "»"
+			end
+		end,
+		padding = 0,
 	},
 
 	file_location = {
@@ -66,9 +43,9 @@ local custom = {
 			end
 
 			if real_col == virtual_col then
-				return string.format("%s %3d,%2d", position, cursorline, real_col)
+				return string.format("%3d/%d,%2d %s", cursorline, filelines, real_col, position)
 			else
-				return string.format("%s %3d,%2d-%-2d", position, cursorline, real_col, virtual_col)
+				return string.format("%3d/%d,%2d-%-2d %s", cursorline, filelines, real_col, virtual_col, position)
 			end
 		end,
 	},
@@ -88,39 +65,27 @@ return {
 					path = 1,
 					shorting_target = 30,
 				},
-				defaults[1],
-				defaults[2],
+				defaults[1], -- { filetype, ... }
+				defaults[2], -- components.file_status
+				defaults[3], -- { conditionals.has_git() and conditionals.has_comp_before() }
 			}
 		end,
 
 		lualine_x = function(defaults)
 			return {
-				defaults[1],
-				custom.file_enc,
-				custom.bomb,
-				{
-					"fileformat",
-					symbols = {
-						unix = '', -- e712
-						dos = '',  -- e70f
-						mac = '',  -- e711
-					},
-					padding = 1,
-				},
+				defaults[1], -- components.chat_progress
+				defaults[2], -- { "encoding", show_bomb = true, fmt = string.upper, padding = { left = 1 }, cond = conditionals.has_enough_room, }
+				defaults[3], -- { "fileformat", ... LF,CRLF,CR ... }
 				custom.sep,
-				custom.shift_tab_value,
+				custom.shift_width,
+				custom.expand_flag,
+				defaults[4], -- components.tabwidth(tabstop)
 			}
 		end,
 
 		lualine_z = function()
 			return {
 				custom.file_location,
-				custom.date_icon,
-				{
-					'datetime',
-					style = "%H:%M",
-					padding = { right = 1 },
-				},
 			}
 		end,
 	},
