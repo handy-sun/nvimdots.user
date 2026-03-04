@@ -1,4 +1,4 @@
--- local ui_icon = require("modules.utils.icons").get("ui", true)
+local icons = require("modules.utils.icons")
 
 local custom = {
 	sep = {
@@ -49,6 +49,13 @@ local custom = {
 			end
 		end,
 	},
+
+	watch_icon = {
+		function ()
+			return icons.get('misc', true).Watch
+		end,
+		padding = { left = 1 }
+	},
 }
 
 return {
@@ -86,6 +93,13 @@ return {
 		lualine_z = function()
 			return {
 				custom.file_location,
+				custom.watch_icon,
+				{
+					'datetime',
+					style = '%H:%M',
+					padding = { right = 1 },
+
+				},
 			}
 		end,
 	},
