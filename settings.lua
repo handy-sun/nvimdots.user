@@ -20,8 +20,22 @@ settings["colorscheme"] = "onedark"
 -- @type string[]
 settings["lsp_deps"] = function(defaults)
 	return {
-		defaults[5], -- "lua_ls"
-		defaults[6], -- "pylsp"
+		"clangd",
+		"bashls",
+		"jsonls",
+		"lua_ls",
+	}
+end
+
+-- General-purpose sources for none-ls to install during bootstrap.
+-- Supported sources: https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins
+---@type string[]
+settings["null_ls_deps"] = function(defaults)
+	return {
+		"clang_format",
+		"shfmt",
+		"stylua",
+		"vint",
 	}
 end
 
