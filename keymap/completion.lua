@@ -24,7 +24,7 @@ mappings["plug_map"] = {
 	["v|J"] = "",
 	["v|K"] = "",
 	-- noh
-	["n|<leader><space>"] = map_callback(function()
+	["n|<leader>s"] = map_callback(function()
 			_flash_esc_or_noh()
 		end)
 		:with_noremap():with_silent():with_desc("edit: Clear search highlight"),
@@ -50,7 +50,7 @@ mappings["plug_map"] = {
 	["n|z]"] = map_cu("exe v:count1 . 'cnext'"):with_noremap():with_silent():with_desc("quickfix: move [count] next"),
 	-- Resize window
 	-- Save and quit
-	["n|<leader>s"] = map_cr("w"):with_noremap():with_silent():with_desc("edit: Save file"),
+	["n|<leader><space>"] = map_cr("w"):with_noremap():with_silent():with_desc("edit: Save file"),
 	["n|<leader>q"] = map_cr("wq"):with_desc("edit: Save file and quit"),
 	["n|<leader><BS>"] = map_cr("wqa"):with_desc("edit: Save All file(s) and quit"),
 	["n|<leader>e"] = map_cr("q!"):with_desc("edit: Force quit"),
@@ -60,6 +60,7 @@ mappings["plug_map"] = {
 	["n|sv"] = map_cmd('viw"ap'):with_noremap():with_desc("paste override a word with register a"),
 	["n|sw"] = map_cmd('"byiW'):with_noremap():with_desc("yank WORD into register b"),
 	["n|so"] = map_cmd('viW"bp'):with_noremap():with_desc("paste override WORD with register b"),
+	["n|s-"] = map_cmd("vg_p"):with_noremap():with_desc("paste until EOL, donnot contain <CR>"),
 	["n|sa"] = map_cmd(":%s/<C-R>a/"):with_noremap():with_desc("replace register a"),
 	["n|s/"] = map_cmd(":%s/<C-R>//"):with_noremap():with_desc("replace search word"),
 	["n|sr"] = map_cmd(":%s/\\<<C-R><C-W>\\>/"):with_noremap():with_desc("replace the word under the cursor"),
@@ -69,7 +70,11 @@ mappings["plug_map"] = {
 	["n|sl"] = map_cmd(":setlocal splitright<CR>:vsplit <C-R>=expand('%:p:h') . '/' <CR>"):with_noremap():with_desc("split right and fill absolute path"),
 	["n|sk"] = map_cmd(":setlocal nosplitbelow<CR>:split <C-R>=expand('%:p:h') . '/' <CR>"):with_noremap():with_desc("split above and fill absolute path"),
 	["n|sj"] = map_cmd(":setlocal splitbelow<CR>:split <C-R>=expand('%:p:h') . '/' <CR>"):with_noremap():with_desc("split below and fill absolute path"),
-	["n|z;"] = map_cr("registers"):with_noremap():with_desc("command: Show all registers"),
+	-- show registers, buffers, marks
+	["n|z'"] = map_cr("registers"):with_noremap():with_desc("command: Show all registers"),
+	["n|zm"] = map_cr("marks"):with_noremap():with_desc("command: Show all marks"),
+	-- not show ls output on nivm 
+	-- ["n|zl"] = map_cmd(":ls<CR>:b"):with_noremap():with_desc("command: Show all buffers and select one"),
 	-- Edit file
 	["n|<leader>W"] = map_cmd(":%s/\\s\\+$//<CR>"):with_noremap():with_desc("edit: Trim EOL trailing space"),
 	["n|<leader><CR>"] = map_cmd("i<CR><Esc>k$"):with_noremap():with_desc("edit: Break this line and move right content to next line"),
@@ -92,7 +97,7 @@ mappings["plug_map"] = {
 	["c|<C-t>"] = map_cmd("<C-R>=expand('%:p:h') . '/' <CR>"):with_noremap():with_silent():with_desc("command: Fill absolute path"),
 	-- Copy to system clipboard
 	["n|ss"] = map_cmd('"*y'):with_noremap():with_desc("yank select pattern into system clipboard"),
-	["v|<leader>s"] = map_cmd('"*y'):with_noremap():with_desc("yank select pattern into system clipboard"),
+	["v|<leader><space>"] = map_cmd('"*y'):with_noremap():with_desc("yank select pattern into system clipboard"),
 	["n|su"] = map_cmd('"*p'):with_noremap():with_desc("paste from system clipboard"),
 	["v|su"] = map_cmd('"*p'):with_noremap():with_desc("paste from system clipboard"),
 }
